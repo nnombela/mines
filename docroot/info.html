@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<head>
+    <title>Multiplayer Minesweeper (M2)</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="css/mines.css" type="text/css" media="screen,projection"/>
+    <link rel="shortcut icon" href="favicon.ico"/>
+</head>
+
+<body>
+<div id="content">
+    <p align="center">
+        <a href="index.html"><img src="images/logo.gif" alt="" width="578" border="0" height="56"></a>
+    </p>
+
+    <h1>
+        <a href="index.html">Home</a>
+        <a href="info.html#rules">Help &amp; Game Rules</a>
+        <a href="info.html#notes">Developer Notes</a>
+        <a href="info.html#contact">Contact</a>
+        <a href="#license">License</a>
+    </h1>
+
+    <h3>Introduction</h3>
+
+    <p>
+        This game started as a small project a few years ago. I wanted to test Swing Java development and also make something fun to play with.
+    </p>
+
+    <p>
+        I'm a big fan of the minesweeper game, It is the only game I never get tired of, playing is kind of a stress reliever for me I guess. I also think I'm not too bad (<a href="images/record.png">screenshot</a> of my record).
+        I've been looking forward a multiplayer version of the minesweeper game for years and never found something that match the idea I have on mind, so I decided to take it the hard way and make it by myself. That way It would be exactly as I want to.
+    </p>
+
+    <h1><a href="#" id="rules">Help &amp; Game Rules</a></h1>
+
+    <p>
+        You can play single-player like the original game or go multiplayer by login on the server. After login, you can either create a new session or search an existing one to join.
+        After joining a session you have a tab where you can chat with others players. There is also a player tab where you can see who is online.
+    </p>
+
+    <p>
+        Press the smile button to get ready. If you don't do it and the creator is waiting for you, the game will set you ready and start automatically.
+        Don't go crazy uncovering cells at the beginning, trying to open the board blindly, as the server will do it for you every one second until one of the players uncover a cell.
+        Also, after this open stage, the server will uncover a cell after five seconds if none of the players uncover or set a flag on one. In other words don't uncover or set a flag if you are not sure of it.
+    </p>
+
+    <h3>
+        There are two game modes: FLAG and UNCOVER.
+    </h3>
+
+    <ul>
+
+        <li>
+            <p>
+                For the <b>FLAG</b> mode, which is the default, you score one point anytime you set a flag on a mine. If the flag is set incorrectly you loose all your points, and also
+                you will be paused for a few seconds, afterwards you can join the game again by pressing the smile button once again
+            </p>
+            <blockquote>
+                In this mode, you can not unset a flag, as for sure It will be correctly set on a mine. The flags that you set will be red and the flags set by others will appear blue.
+            </blockquote>
+
+        </li>
+        <li>
+            <p>
+                For the <b>UNCOVER</b> mode, which is for the ones who do'nt like to set flags, you score one point for any cell uncovered that don't have a mine.
+                In which case you loose all the points and you will be paused for a few seconds, afterwards you can join again by pressing the smile button.
+            </p>
+            <blockquote>
+                In this mode, the flags that you set will not be send to the server and will not appear set for the rest of the players. Also as it can be incorrectly set, you can unset it anytime.
+            </blockquote>
+            <p>
+                If you uncover a cell that do'nt have any adjacent mine all the adjacent cell will be automatically uncovered, just as the original game, and you will collect one point for each one.
+            </p>
+
+        </li>
+    </ul>
+
+    <h3>
+        The <i>Auto-flag</i> option.
+    </h3>
+    <p>
+        With the auto-flag option on, flags will be automatically set around uncovered cells that have as many adjacents as mines. That make the game very fast by clicking the right and left buttons simultaneously.
+    </p>
+
+    <h1><a href="#" id="notes">Developer notes</a></h1>
+
+    <p>
+        I made this game with some goals ahead, which are:
+    </p>
+    <ul>
+        <li>Very light applet in terms of low cpu usage and small memory footprint. This is important as minesweeper is usually played while doing something else. A lot of image caching and profiling has been made to achieve it</li>
+        <li>Designed for responsiveness. I have a pretty good record on this game, so if the responsiveness wasn't good enough the game will crap</li>
+        <li>Implementation of the double click technique, which is a must to break the 100 seconds barrier (I think)</li>
+        <li>Fun. Let more than 2 players play at the same time</li>
+        <li>Themeable. Ok, right now there is only one theme, but I hope to add more soon.</li>
+    </ul>
+
+
+    <h1><a href="#" id="todo">Todo</a></h1>
+
+    <p>This is a brief todo list I may actually do someday</p>
+    
+    <ul>
+        <li>Add themes</li>
+        <li>Add a handicap mechanism so players of diferent skills can play together</li>
+        <li>Make it a facebook aplicaction</li>
+        <li>Add registration and make a league, hall of fame section</li>
+        <li>Release source code</li>
+    </ul>
+
+
+    <h1><a href="#" id="author">About the Author</a></h1>
+
+    <p>
+        Hi! My name is Nicolas. I'm a Telecom Engineer and Software Developer working in Madrid, Spain. I mostly work on server side programming in Java, but from time to time a like to work on different staff.
+        My interests are: programming (languages, methologies, techniques, etc.), games (obviously, who else would have made this?), sports, cooking... mostly having fun I guess.
+    </p>
+
+
+    <h1><a href="#contact" id="contact">Contact</a></h1>
+
+    <p>
+        If you like this game, or are having some problems to make it work, or you may find some bug, or want to add something you think is missing. You can contact me at <a href="mailto:nnombela@gmail.com">nnombela@gmail.com</a>. I look forward to hearing from you!
+    </p>
+
+    <br/>
+    <a href="http://www.facebook.com/people/Nicolas-Nombela/1140625842" title="Perfil de Facebook de Nicolas Nombela" target=_TOP><img src="http://badge.facebook.com/badge/1140625842.330.22029060.png" border=0 alt="Perfil de Facebook de Nicolas Nombela"></a>
+
+    <h1><a href="#license" id="license">License</a></h1>
+
+    <p>
+        <!-- Please leave this line intact -->
+        This game is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/2.5/">Creative
+        Commons Attribution-Noncommercial-No Derivative Works 2.5 License</a>.
+    </p>
+    
+    <p>
+        <img src="images/xhtml10.gif" alt="" width="80" border="0" height="15">
+        <img src="images/css.gif" alt="" width="80" border="0" height="15">
+    </p>
+</div>
+
+</body>
+</html>

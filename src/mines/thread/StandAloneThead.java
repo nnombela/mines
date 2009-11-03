@@ -14,6 +14,7 @@ import mines.gui.MinesPanel;
  * Date: 14-dic-2008
  * Time: 21:38:50
  */
+
 public class StandAloneThead extends Thread implements EventReceiver, EventSender {
     private GameSession session;
 

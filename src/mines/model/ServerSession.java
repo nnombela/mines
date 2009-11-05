@@ -10,7 +10,7 @@ import java.util.*;
  */
 public class ServerSession extends GameSession {
     private static final long HEARTBEAT_ELAPSE_TIME = 10 * 1000;
-    private static final long PLAY_ELAPSE_TIME = 3 * 1000;
+    private static final long PLAY_ELAPSE_TIME = 5 * 1000;
     private static final long OPEN_ELAPSE_TIME = 1 * 1000;
     private static final long COUNTDOWN_ELAPSE_TIME = 5 * 1000;
     private static final long GET_READY_ELAPSE_TIME = 20 * 1000;

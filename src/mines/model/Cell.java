@@ -29,6 +29,11 @@ public class Cell {
         this.y = y;
     }
 
+    public Cell(int x, int y, Player uncoveredBy) {
+        this(x, y);
+        this.uncoveredBy = uncoveredBy;
+    }
+
     public void setAdjacents(List<Cell> adjacents) {
         this.adjacents = adjacents;
     }

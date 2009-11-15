@@ -250,7 +250,7 @@ public class ClientThread extends UdpThread implements EventSender, EventReceive
              public void run() {
                  if (myself.equals(looser)) {
                      glassPane.showMultipleMessage(new String[] {
-                             "You have lost your points!",
+                             "You failed! Your score has been reset",
                              "Press the smile button to rejoin the game"});
                  }
              }
@@ -466,7 +466,7 @@ public class ClientThread extends UdpThread implements EventSender, EventReceive
 
         EventQueue.invokeLater(new Runnable() {
             public void run() {
-                glassPane.showMessage("Error message: " + message, 3);
+                glassPane.showMessage(message, 3);
             }
         });
 

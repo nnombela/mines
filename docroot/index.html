@@ -26,31 +26,38 @@
 
 
     <p>
-        Type your screen name and login. Create a new game session and ask others to join it. Or you may search for a session already created by other player.
+        Type your screen name and click the login button. Create a new game session and ask others to join it. Or you may search for a session already created by another player.
         When ready, press the smile button and wait for the game to start. By default, you play the <b>FLAG</b> game mode in which you score one point for any flag you set correctly and you loose all your points for any mistake you make.
     </p>
 
     <div id="applet">
-        <OBJECT classid="clsid:8AD9C840-044E-11D1-B3E9-00805F499D93" name="MinesJApplet" width="710" height="341" align="top" codebase="https://java.sun.com/update/1.5.0/jinstall-1_5_0_10-windows-i586.cab#Version=1,5,0,10">
-        <PARAM name="java_code" value="mines.gui.MinesJApplet">
-        <PARAM name="java_codebase" value=".">
-        <PARAM name="java_archive" value="mines.jar">
-        <PARAM name="type" value="application/x-java-applet;version=1.5">
-        <PARAM name="SERVER_PORT" value="1234">
-        <PARAM name="CLIENT_PORT" value="1235">
-        <COMMENT>
-        <EMBED type="application/x-java-applet;version=1.5" name="MinesJApplet" width="710" height="341" align="top" pluginspage="https://www.java.com/en/download/manual.jsp" java_code="mines.gui.MinesJApplet" java_codebase="." java_archive="mines.jar" SERVER_PORT="1234" CLIENT_PORT="1235"/>
-        <NOEMBED>
-                <p>Unable to load applet! Please load the java plugin at <a href="https://www.java.com/en/download/windows_automatic.jsp">Load Java Plugin</a></p>
-        </NOEMBED>
-        </COMMENT>
-        </OBJECT>
+        <script src="http://www.java.com/js/deployJava.js"></script>
+        <script>
+            var attributes = {code:'mines.gui.MinesJApplet.class',
+                archive:'mines.jar',
+                width:710, height:341} ;
+            var parameters = {SERVER_PORT:1234, CLIENT_PORT:1235} ;
+            var version = '1.5' ;
+            deployJava.runApplet(attributes, parameters, version);
+        </script>
     </div>
 
     <blockquote>
         <img src="images/info.png" align="left" border="0" alt=""/>
         This is an early beta version. May not work as expected. Please contact me at <a href="mailto:nnombela@gmail.com">nnombela@gmail.com</a> if you find any problem or want to make a suggestion.
     </blockquote>
+
+    <div id="jnlp">
+        <p>You can also start the application directly without having a web browser&nbsp;
+        <script>
+            if (deployJava.versionCheck('1.5+')) {
+                var url = "mines.jnlp";
+                deployJava.createWebStartLaunchButton(url, '1.5.0');
+            }
+        </script>
+        </p>
+    </div>
+    <br/>
 
     <h1><a href="#license" id="license"></a></h1>
 

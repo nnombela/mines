@@ -37,6 +37,7 @@ public class ServerThread extends UdpThread implements EventReceiver, EventSende
     
     public void process(InetSocketAddress address)  {
         byte event = buffer.get();
+        //System.out.println("Received event " + event);
 
         Player from = getPlayer(event, address);
         if (from == null) {
@@ -294,9 +295,20 @@ public class ServerThread extends UdpThread implements EventReceiver, EventSende
         if (session != null) {
             session.quit(player);
             if (session.getCreator().equals(player)) {
-                sessions.remove(player);
+                removeSession(session);
             }
         }
+    }
+
+    private void putNewSession(GameSession session) {
+        timer.schedule(((ServerSession)session).getTimerTask(), 0, 1000);
+        sessions.put(session.getCreator(), session);
+    }
+
+    private void removeSession(GameSession session) {
+        sessions.remove(session.getCreator());
+        ((ServerSession)session).getTimerTask().cancel();
+        timer.purge();
     }
 
     public void receiveSessionList(Player from) {
@@ -308,7 +320,7 @@ public class ServerThread extends UdpThread implements EventReceiver, EventSende
     private void purgeDeadSessions() {
         for(GameSession session : new ArrayList<GameSession>(sessions.values())) {
             if (session.getNumPlayers() == 0) {
-                sessions.remove(session.getCreator());
+                removeSession(session);
             }
         }
     }
@@ -353,22 +365,21 @@ public class ServerThread extends UdpThread implements EventReceiver, EventSende
     }
 
 
-    private ServerSession createNewSession(Player creator) {
-        removeSession(creator);
-        ServerSession session = new ServerSession(this);
-        sessions.put(creator, session);
-        return session;
-    }
-    
     public void receiveCreateSession(Player from) {
         System.out.println("CREATE SESSION EVENT");
         Player self = buffer.getPlayer(false);
         String name = buffer.getString();
         int gameMode = buffer.getInt();
         boolean autoFlags = buffer.getBoolean();
-        ServerSession session = createNewSession(from);
-        session.init(self, from, name, gameMode, autoFlags);
-        timer.schedule(session.getTimerTask(), 0, 1000);
+        removeSession(from);
+        if (sessions.size() > 20) {
+            sendError(from, Event.TOO_MANY_ACTIVE_SESSIONS_ERROR_CODE);
+            purgeDeadSessions();
+        } else {
+            GameSession session = new ServerSession(this);
+            session.init(self, from, name, gameMode, autoFlags);
+            putNewSession(session);
+        }
     }
 
     public void receiveFinishGame(Player from) {
@@ -417,13 +428,15 @@ public class ServerThread extends UdpThread implements EventReceiver, EventSende
 
         GameSession session = from.getSession();
         if (session != null) {
-            if (session.hasStarted() == false || from.isReady() == false) {
-                sendError(from, Event.NOT_READY_ERROR_CODE + from.getUsername());
+            if (from.isReady() == false) {
+                sendError(from, Event.NOT_READY_ERROR_CODE);
+            } else if (session.hasStarted() == false) {
+                sendError(from, Event.GAME_HAS_NOT_STARTED_CODE);
             } else {
                 session.uncoverCell(x, y, from);
             }
         } else {
-            sendError(from, Event.NOT_READY_ERROR_CODE + from.getUsername());
+            sendError(from, Event.GAME_HAS_NOT_STARTED_CODE);
             System.err.println("Received uncover cell from " + from.getUsername() + ", but has no session");
         }
     }

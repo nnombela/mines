@@ -58,15 +58,11 @@ public abstract class UdpThread extends Thread {
 
     public void run() {
         if (channel.socket().isBound()) {
-            while (true) {
-                if (halt) return;
+            while (halt == false) {
                 try {
                     process(receive());
-                    Thread.yield();
-                } catch (IOException e) {
-                    if (!halt) {
-                        e.printStackTrace();
-                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
                 Thread.yield();
             }

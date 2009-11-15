@@ -215,8 +215,10 @@ public class ClientSession extends GameSession implements ActionListener {
     }
 
     public synchronized void uncoverByMyself(Cell cell) {
-        if (hasStarted() || isStandaloneGameMode()) {
+        if (isStandaloneGameMode() || (myself.isReady() && hasStarted())) {
             uncoverByMyself(cell, myself);
+        } else {
+            getEventSender().sendUncoverCell(null, new Cell(cell.getX(), cell.getY(), myself));
         }
     }
 

@@ -36,6 +36,8 @@ public interface Event {
     String NOT_LOGGED_ERROR_CODE = "Sorry, but you are not logged in";
     String SESSION_DOES_NOT_EXITS_ERROR_CODE = "Sorry, session does not exist";
     String CAN_NOT_QUIT_SESSION_ERROR_CODE = "Sorry, but you can quit session for player: ";
-    String NOT_READY_ERROR_CODE = "Sorry, game has not started of player not ready: ";
+    String GAME_HAS_NOT_STARTED_CODE = "Sorry, game has not started";
+    String NOT_READY_ERROR_CODE = "Sorry, player not ready. Press the smile button";
     String GENERAL_ERROR_CODE = "Sorry, not specific error";
+    String TOO_MANY_ACTIVE_SESSIONS_ERROR_CODE = "Sorry, too many active sessions";
 }

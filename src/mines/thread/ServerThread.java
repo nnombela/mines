@@ -366,7 +366,7 @@ public class ServerThread extends UdpThread implements EventReceiver, EventSende
 
 
     public void receiveCreateSession(Player from) {
-        System.out.println("CREATE SESSION EVENT");
+        System.out.println("CREATE SESSION EVENT , ACTIVE SESSIONS: " + sessions.size());
         Player self = buffer.getPlayer(false);
         String name = buffer.getString();
         int gameMode = buffer.getInt();
